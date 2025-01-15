@@ -4,94 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบประเมินความเสี่ยงโรคหลอดเลือดสมอง</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question label {
+            display: block;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <h1>แบบประเมินความเสี่ยงโรคหลอดเลือดสมอง</h1>
-    <form id="stroke-risk-form">
-        <label>1. อายุของคุณ:</label><br>
-        <input type="radio" name="age" value="0"> น้อยกว่า 45 ปี<br>
-        <input type="radio" name="age" value="1"> 45-54 ปี<br>
-        <input type="radio" name="age" value="2"> 55-64 ปี<br>
-        <input type="radio" name="age" value="3"> 65 ปีขึ้นไป<br><br>
-
-        <label>2. เพศ:</label><br>
-        <input type="radio" name="gender" value="1"> ชาย<br>
-        <input type="radio" name="gender" value="0"> หญิง<br><br>
-
-        <label>3. มีประวัติคนในครอบครัวเป็นโรคหลอดเลือดสมองหรือไม่?</label><br>
-        <input type="radio" name="family_history" value="2"> ใช่<br>
-        <input type="radio" name="family_history" value="0"> ไม่ใช่<br><br>
-
-        <label>4. คุณมีโรคประจำตัวใดบ้าง? (เลือกทุกข้อที่มี):</label><br>
-        <input type="checkbox" name="conditions" value="2"> โรคความดันโลหิตสูง<br>
-        <input type="checkbox" name="conditions" value="2"> โรคเบาหวาน<br>
-        <input type="checkbox" name="conditions" value="3"> โรคหัวใจ<br>
-        <input type="checkbox" name="conditions" value="2"> คอเลสเตอรอลสูง<br>
-        <input type="checkbox" name="conditions" value="1"> โรคอ้วน<br>
-        <input type="checkbox" name="conditions" value="0"> ไม่มีโรคประจำตัว<br><br>
-
-        <label>5. คุณสูบบุหรี่หรือไม่?</label><br>
-        <input type="radio" name="smoking" value="2"> สูบ<br>
-        <input type="radio" name="smoking" value="0"> ไม่สูบ<br><br>
-
-        <label>6. การดื่มแอลกอฮอล์ของคุณเป็นประจำหรือไม่?</label><br>
-        <input type="radio" name="alcohol" value="1"> ดื่ม<br>
-        <input type="radio" name="alcohol" value="0"> ไม่ดื่ม<br><br>
-
-        <label>7. คุณออกกำลังกายเป็นประจำหรือไม่?</label><br>
-        <input type="radio" name="exercise" value="0"> ใช่ (อย่างน้อย 3 ครั้งต่อสัปดาห์)<br>
-        <input type="radio" name="exercise" value="2"> ไม่ใช่<br><br>
-
-        <label>8. การรับประทานอาหารของคุณเป็นอย่างไร?</label><br>
-        <input type="radio" name="diet" value="0"> รับประทานอาหารที่มีประโยชน์<br>
-        <input type="radio" name="diet" value="2"> รับประทานอาหารที่มีไขมันและเกลือสูง<br>
-        <input type="radio" name="diet" value="1"> ไม่มีความใส่ใจในการเลือกอาหาร<br><br>
-
-        <label>9. ระดับความเครียดในชีวิตของคุณเป็นอย่างไร?</label><br>
-        <input type="radio" name="stress" value="0"> ไม่มีความเครียดหรือเครียดน้อย<br>
-        <input type="radio" name="stress" value="1"> เครียดปานกลาง<br>
-        <input type="radio" name="stress" value="2"> เครียดมาก<br><br>
-
-        <label>10. คุณเคยมีอาการของโรคหลอดเลือดสมองหรือไม่?</label><br>
-        <input type="radio" name="stroke_history" value="3"> เคย<br>
-        <input type="radio" name="stroke_history" value="0"> ไม่เคย<br><br>
-
-        <button type="button" onclick="calculateRisk()">ประเมินความเสี่ยง</button>
+    <form id="strokeRiskForm">
+        <div class="question">
+            <label>อายุของคุณ:</label>
+            <label><input type="radio" name="age" value="0"> น้อยกว่า 45 ปี</label>
+            <label><input type="radio" name="age" value="1"> 45-54 ปี</label>
+            <label><input type="radio" name="age" value="2"> 55-64 ปี</label>
+            <label><input type="radio" name="age" value="3"> 65 ปีขึ้นไป</label>
+        </div>
+        <div class="question">
+            <label>เพศ:</label>
+            <label><input type="radio" name="gender" value="1"> ชาย</label>
+            <label><input type="radio" name="gender" value="0"> หญิง</label>
+        </div>
+        <div class="question">
+            <label>มีประวัติคนในครอบครัวเป็นโรคหลอดเลือดสมองหรือไม่?</label>
+            <label><input type="radio" name="familyHistory" value="2"> ใช่</label>
+            <label><input type="radio" name="familyHistory" value="0"> ไม่ใช่</label>
+        </div>
+        <div class="question">
+            <label>คุณมีโรคประจำตัวใดบ้าง? (เลือกได้หลายข้อ)</label>
+            <label><input type="checkbox" name="conditions" value="2"> โรคความดันโลหิตสูง</label>
+            <label><input type="checkbox" name="conditions" value="2"> โรคเบาหวาน</label>
+            <label><input type="checkbox" name="conditions" value="3"> โรคหัวใจ</label>
+            <label><input type="checkbox" name="conditions" value="2"> คอเลสเตอรอลสูง</label>
+            <label><input type="checkbox" name="conditions" value="1"> โรคอ้วน</label>
+            <label><input type="checkbox" name="conditions" value="0"> ไม่มีโรคประจำตัว</label>
+        </div>
+        <div class="question">
+            <label>คุณสูบบุหรี่หรือไม่?</label>
+            <label><input type="radio" name="smoking" value="2"> สูบ</label>
+            <label><input type="radio" name="smoking" value="0"> ไม่สูบ</label>
+        </div>
+        <div class="question">
+            <label>การดื่มแอลกอฮอล์ของคุณเป็นประจำหรือไม่?</label>
+            <label><input type="radio" name="alcohol" value="1"> ดื่ม</label>
+            <label><input type="radio" name="alcohol" value="0"> ไม่ดื่ม</label>
+        </div>
+        <button type="button" onclick="calculateRisk()">ประเมินผล</button>
+        <div class="result" id="result"></div>
     </form>
-    <h2 id="result"></h2>
 
     <script>
         function calculateRisk() {
+            let form = document.forms['strokeRiskForm'];
             let totalScore = 0;
-            const form = document.forms["stroke-risk-form"];
 
-            // คำนวณคะแนนจากคำถาม
-            totalScore += parseInt(form["age"].value || 0);
-            totalScore += parseInt(form["gender"].value || 0);
-            totalScore += parseInt(form["family_history"].value || 0);
+            totalScore += parseInt(form.age.value || 0);
+            totalScore += parseInt(form.gender.value || 0);
+            totalScore += parseInt(form.familyHistory.value || 0);
 
-            const conditions = form["conditions"];
-            for (let i = 0; i < conditions.length; i++) {
-                if (conditions[i].checked) {
-                    totalScore += parseInt(conditions[i].value || 0);
+            let conditions = form['conditions'];
+            for (let condition of conditions) {
+                if (condition.checked) {
+                    totalScore += parseInt(condition.value);
                 }
             }
 
-            totalScore += parseInt(form["smoking"].value || 0);
-            totalScore += parseInt(form["alcohol"].value || 0);
-            totalScore += parseInt(form["exercise"].value || 0);
-            totalScore += parseInt(form["diet"].value || 0);
-            totalScore += parseInt(form["stress"].value || 0);
-            totalScore += parseInt(form["stroke_history"].value || 0);
+            totalScore += parseInt(form.smoking.value || 0);
+            totalScore += parseInt(form.alcohol.value || 0);
 
-            // แสดงผลการประเมิน
-            const result = document.getElementById("result");
+            let result = document.getElementById('result');
             if (totalScore <= 5) {
-                result.innerText = `คะแนนรวม: ${totalScore}\nความเสี่ยงต่ำ`;
+                result.textContent = `คะแนนรวม: ${totalScore} (ความเสี่ยงต่ำ)`;
             } else if (totalScore <= 12) {
-                result.innerText = `คะแนนรวม: ${totalScore}\nความเสี่ยงปานกลาง`;
+                result.textContent = `คะแนนรวม: ${totalScore} (ความเสี่ยงปานกลาง)`;
             } else {
-                result.innerText = `คะแนนรวม: ${totalScore}\nความเสี่ยงสูง`;
+                result.textContent = `คะแนนรวม: ${totalScore} (ความเสี่ยงสูง)`;
             }
         }
     </script>
